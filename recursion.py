@@ -63,12 +63,19 @@ def group_sum_6(start, nums, target):
         if target < nums[start]:
             return False
         return group_sum_6(start + 1, nums, target - nums[start])
-    return group_sum_6(start + 1, nums, target - nums[start]) or group_sum_6(start + 1, nums, target)
+    return group_sum_6(start + 1, nums, target - nums[start]) or group_sum_6(start +1, nums, target)
 
 
 
-# TODO: Modify this function. You may delete this comment when you are done.
 def group_no_adj(start, nums, target):
+    """
+    Given a list of ints, determine if there exists a group of some ints that sum to
+    the given target. Additionally, if a value is chosen, the value immediately after
+    (the value adjacent) cannot be chosen.
+
+    pre: start >= 0, len(nums) >= 0, target >= 0, nums will only contain ints
+    post: return True if nums has a group of ints that sum to target, False otherwise
+    """
     if target == 0:
         return True
     if start >= len(nums):
@@ -88,7 +95,6 @@ def group_no_adj(start, nums, target):
 
 
 
-# TODO: Modify this function. You may delete this comment when you are done.
 def group_sum_5(start, nums, target):
     """
     Given a list of ints, determine if there exists a group of some ints that sum to
@@ -108,7 +114,7 @@ def group_sum_5(start, nums, target):
         if start + 1 < len(nums) and nums[start + 1] == 1:
             return group_sum_5(start + 2, nums, target - nums[start])
         return group_sum_5(start + 1, nums, target - nums[start])
-    return group_sum_5(start + 1, nums, target - nums[start]) or group_sum_5(start + 1, nums, target)
+    return group_sum_5(start + 1, nums, target - nums[start]) or group_sum_5(start +1, nums, target)
 
 
 
@@ -132,10 +138,10 @@ def group_sum_clump(start, nums, target):
     while group < len(nums) - 1 and nums[group] == nums[group + 1]:
         group += 1
 
-    groupSum = sum(nums[start:group+1])
+    group_sums = sum(nums[start:group+1])
 
-    if groupSum <= target:
-        if group_sum_clump(group + 1, nums, target - groupSum):
+    if group_sums <= target:
+        if group_sum_clump(group + 1, nums, target - group_sums):
             return True
     if group_sum_clump(group + 1, nums, target):
         return True
