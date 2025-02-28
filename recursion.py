@@ -26,21 +26,21 @@ def group_sum(start, nums, target):
     """
 
     nums.sort()
-    if (target in nums[start:]) or (target == 0):
+    if target == 0:
         return True
-    else:
-        index = len(nums) - 1
-        if index < 1:
-            return False
+    if start >= len(nums):
+        return False
+    if target in nums[start:]:
+        return True
 
-        while index > 0:
-            if target - nums[index] < nums[index - 1]:
-                break
-            if target - nums[index] in nums[start:index]:
-                return True
-            index -= 1
+    index = len(nums) - 1
+    while index > start:
+        if target - nums[index] in nums[start:index]:
+            return True
+        index -= 1
 
-    return group_sum(start, nums[:index], target - nums[index])
+    return group_sum(start + 1, nums, target - nums[start])
+
 
 
 
