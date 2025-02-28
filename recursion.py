@@ -55,7 +55,7 @@ def group_sum_6(start, nums, target):
     """
     if target == 0:
         return True
-    elif target < 0:
+    if target < 0:
         return False
     if start >= len(nums):
         return target == 0
@@ -106,7 +106,7 @@ def group_sum_5(start, nums, target):
     """
     if target == 0:
         return True
-    elif target < 0:
+    if target < 0:
         return False
     if start >= len(nums):
         return target == 0
@@ -131,7 +131,7 @@ def group_sum_clump(start, nums, target):
     """
     if target == 0:
         return True
-    elif start >= len(nums):
+    if start >= len(nums):
         return False
 
     group = start
@@ -168,7 +168,7 @@ def split_array(nums):
     def helper(index, target):
         if target == 0:
             return True
-        elif index >= len(nums):
+        if index >= len(nums):
             return False
 
         remove = helper(index + 1, target)
@@ -228,7 +228,7 @@ def split_53(nums):
         if num % 5 == 0:
             return helper(nums5 + [num], nums3, rest)
 
-        elif num % 3 == 0:
+        if num % 3 == 0:
             return helper(nums5, nums3 + [num], rest)
 
         return (helper(nums5 + [num], nums3, rest) or
